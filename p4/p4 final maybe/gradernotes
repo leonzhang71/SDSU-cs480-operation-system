@@ -1,0 +1,15 @@
+I lose one point from 'make splint', and I think I put all variables on the top of each block.
+I tried to move all variables to top of each block, but my program will display 
+the wrong output for me.
+
+I believe everthing work except 'amke splint'.
+I wrote this code by myself.
+
+I copy the code 'strdup' function from the internet since 'make splint' shows 
+it is an undeclared identifier. 
+link:https://stackoverflow.com/questions/40766055/error-strdup-was-not-declared-in-this-scope
+
+USEFUL help from edoras like 'man errno'. Helping me how to use errno
+
+cite code:
+fork1.c,exec1.c, fork2.c pipe.c,dup.c, dup2.c, sig.c, sighandler,c,dir.c, stat.c.

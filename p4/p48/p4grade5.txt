@@ -1,0 +1,925 @@
+This is a **preliminary** test of your upcoming Program 4.
+
+This message, which will appear to be mailed from your account, is intended to
+show you some (but not necessarily all) of the checks that will be made on your
+assignment when the due date actually arrives.  This is NOT the actual version
+that will be graded, but only an attempt to give you early warning of any
+potential problems.  Point totals in the final graded version may differ.
+
+[Standard Disclaimer:]
+These practice tests are intended to show bugs, but also to reveal places
+where you may not be following all the automatic grader's nitpicking
+requirements.  If you receive failure warnings on the preliminary tests
+and then also have difficulty during the graded event, you have very little
+recourse.  To take full advantage of the feedback provided in this course,
+you must do the assignments in a timely fashion.
+jc
+
+Login     Name             Tty      Idle  Login Time   Office     Office Phone   Host
+cssc0094  Chonglin Zhang   pts/1       *  Nov 24 07:46 home                      (10.130.143.187)
+
+Checking Program 4: 38/39
+Remember, the GradeEarly file will be used to decide if you are FINISHED.
+If the GradeEarly file is present at the extra-credit deadline,
+your program will be considered 'submitted', with NO further chance for
+modifications.  Checking if the GradeEarly file exists:
+ls -l ~cssc0094/Two/GradeEarly
+-rw------- 1 cssc0094 carroll 0 Sep 21 19:26 /home/cs/carroll/cssc0094/Two/GradeEarly
+If this were the extra credit deadline (11pm Saturday, 11/27/21),
+the autograder WOULD collect your program.
+total 28
+drwx------ 2 cssc0094 4096 Nov 23 19:57 Data4/
+drwx------ 5 cssc0094   52 Aug 24 15:04 Maildir/
+drwx------ 2 cssc0094  154 Sep 27 22:40 One/
+-rw------- 1 cssc0094 1733 Aug 22 23:45 README
+drwx------ 2 cssc0094 4096 Nov 23 22:28 Three/
+drwx------ 2 cssc0094 4096 Nov 24 10:57 Two/
+drwx------ 2 cssc0094 4096 Sep 25 20:27 Zero/
+lrwxrwxrwx 1 cssc0094   31 Aug 27 23:55 calendar -> /home/cs/faculty/cs480/calendar
+drwx------ 2 cssc0094   61 Aug 26 10:35 data/
+drwx------ 2 cssc0094  129 Sep  6 00:15 data1/
+drwx------ 2 cssc0094   64 Sep  6 00:34 testOne/
+drwx------ 2 cssc0094 4096 Oct  5 12:42 testTwo/
+-rw------- 1 cssc0094   29 Sep 29 16:52 your.outputc
+Test 0... checking for the proper directory:
+total 140
+-rw-r--r-- 1 cssc0094  1679 Jul 23  2017 CHK.h
+-rw------- 1 cssc0094     0 Sep 21 19:26 GradeEarly
+-rw------- 1 cssc0094  6195 Nov 21 19:36 getword.c
+lrwxrwxrwx 1 cssc0094    36 Sep 21 19:28 getword.h -> /home/cs/faculty/cs480/One/getword.h
+-rw------- 1 cssc0094  8376 Nov 24 10:57 getword.o
+-rw------- 1 cssc0094   650 Oct  6 01:12 gradernotes
+lrwxrwxrwx 1 cssc0094    35 Sep 21 19:28 makefile -> /home/cs/faculty/cs480/Two/makefile
+-rwx------ 1 cssc0094 31768 Nov 24 10:57 p2*
+-rw------- 1 cssc0094 18915 Nov 24 06:15 p2.c
+-rw------- 1 cssc0094   410 Nov 21 19:36 p2.h
+-rw------- 1 cssc0094 30104 Nov 24 10:57 p2.o
+-rw------- 1 cssc0094    55 Nov 20 04:45 your.outputF
+-rw------- 1 cssc0094    23 Nov 23 18:51 your.outputO
+-rw------- 1 cssc0094    19 Sep 25 20:23 your.outputb
+-rw------- 1 cssc0094    29 Sep 28 16:19 your.outputc
+-rw------- 1 cssc0094    19 Nov 20 04:15 your.outpute
+-rw------- 1 cssc0094    19 Sep 25 20:23 your.outputf
+Test 1... testing will proceed only if you have created the proper files:
+ls -lo ~/Two/p2.c ~/Two/getword.c
+-rw------- 1 cssc0094  6195 Nov 21 19:36 /home/cs/carroll/cssc0094/Two/getword.c
+-rw------- 1 cssc0094 18915 Nov 24 06:15 /home/cs/carroll/cssc0094/Two/p2.c
+
+
+
+
+Test 2... Checking program structure with cflow:
+cflow ~cssc0094/Two/p2.c ~cssc0094/Two/getword.c
+main() <int main (int argc, char *argv[]) at /home/cs/carroll/cssc0094/Two/p2.c:161>:
+    setpgid()
+    perror()
+    signal()
+    myhandler() <void myhandler (int signum) at /home/cs/carroll/cssc0094/Two/p2.c:154>:
+    reset() <void reset () at /home/cs/carroll/cssc0094/Two/p2.c:206>:
+        free()
+        memset()
+    showprompt() <void showprompt () at /home/cs/carroll/cssc0094/Two/p2.c:243>:
+        printf()
+        fflush()
+    parse() <int parse () at /home/cs/carroll/cssc0094/Two/p2.c:252>:
+        getword() <int getword (char *w) at /home/cs/carroll/cssc0094/Two/getword.c:53>:
+            getchar()
+            ungetc()
+            is_meta_chars() <int is_meta_chars (char *chs, int n) at /home/cs/carroll/cssc0094/Two/getword.c:41>:
+                strncmp()
+        strcmp()
+        free()
+        strdup() <char *strdup (const char *s) at /home/cs/carroll/cssc0094/Two/p2.c:141>:
+            strlen()
+            malloc()
+            memcpy()
+        fprintf()
+    fprintf()
+    run() <int run () at /home/cs/carroll/cssc0094/Two/p2.c:371>:
+        access()
+        fprintf()
+        strcmp()
+        run_cd() <int run_cd () at /home/cs/carroll/cssc0094/Two/p2.c:440>:
+            fprintf()
+            strdup() <char *strdup (const char *s) at /home/cs/carroll/cssc0094/Two/p2.c:141>:
+                strlen()
+                malloc()
+                memcpy()
+            getenv()
+            chdir()
+            perror()
+        run_ls_F() <int run_ls_F () at /home/cs/carroll/cssc0094/Two/p2.c:481>:
+            strdup() <char *strdup (const char *s) at /home/cs/carroll/cssc0094/Two/p2.c:141>:
+                strlen()
+                malloc()
+                memcpy()
+            opendir()
+            fprintf()
+            printf()
+            perror()
+            readdir()
+            sprintf()
+            lstat()
+            S_ISDIR()
+            S_ISLNK()
+            stat()
+            closedir()
+        run_exec() <int run_exec () at /home/cs/carroll/cssc0094/Two/p2.c:560>:
+            fprintf()
+            execvp()
+            perror()
+        run_single_cmd() <int run_single_cmd () at /home/cs/carroll/cssc0094/Two/p2.c:575>:
+            fork()
+            perror()
+            open()
+            dup2()
+            close()
+            fprintf()
+            execvp()
+            printf()
+            wait()
+        run_piped_cmds() <int run_piped_cmds () at /home/cs/carroll/cssc0094/Two/p2.c:730>:
+            fork()
+            perror()
+            pipe()
+            run_other_cmds() <int run_other_cmds (int i, int fds[]) at /home/cs/carroll/cssc0094/Two/p2.c:655> (R):
+                dup2()
+                perror()
+                close()
+                open()
+                fprintf()
+                execvp()
+                pipe()
+                fork()
+                run_other_cmds() <int run_other_cmds (int i, int fds[]) at /home/cs/carroll/cssc0094/Two/p2.c:655> (recursive: see 73)
+                wait()
+            open()
+            fprintf()
+            dup2()
+            close()
+            execvp()
+            wait()
+    killpg()
+    getpgrp()
+    printf()
+    exit()
+
+Test 3... Checking for some prescribed/proscribed features;
+a human will have to look over the output from the grep commands...
+
+Are you defining a character buffer large enough to handle MANY 'long' words?
+egrep -n '#define|STORAGE' p2.h p2.c
+p2.h:18:#define MAXITEM 100 /* max number of words per line */
+p2.h:19:#define PROMPT_STRING ":480:"
+p2.c:71:#define EACCES
+p2.c:75:#define ENOENT
+p2.c:79:#define ENOTDIR
+p2.c:256:    char w[STORAGE];
+
+Are you using the proper system calls to implement 'ls-F' as a built-in?
+egrep -n 'readdir|opendir|stat' p2.c
+46: *, the extern int variable errno will be charge. I set up statement to find which
+59:#include <sys/stat.h>
+498:        dirp = opendir(cmds[0].cmd_args[i]);
+524:            if ((dp = readdir(dirp)) != NULL) {
+525:                struct stat s;
+529:                if (lstat(path, &s) < 0) {
+530:                    perror("lstat");
+537:                    if (stat(path, &s) < 0) {
+655:static int run_other_cmds(int i, int fds[])
+
+Are children being terminated with the correct signal?
+egrep -n 'SIG|setpg|signal|terminated' p2.c
+15: *the signal handling like 'echo hi > filename.'
+36: *child processes exits or a signal is recevied. For vertical pipe, we have to do
+50:#include <signal.h>
+64:#include <signal.h>
+156:    // printf("Received SIGTERM (%d), and the special handler is running...\n", signum);
+163:    if (setpgid(0, 0) < 0) {
+164:        perror("setpgid");
+167:   (void)signal(SIGTERM,myhandler);
+168:   // signal(SIGTERM, myhandler);
+199:    killpg(getpgrp(), SIGTERM);
+200:    printf("p2 terminated.\n");
+
+Is the parent waiting for a child?  ...For the CORRECT child?
+egrep -n 'wait|while' p2.c
+34: *'two' fork() for two pid which mean parent will create two children. Using wait
+35: *system call in c. A call to wait() blocks the calling process until one of its
+60:#include <sys/wait.h>
+523:        while(dirp) {
+638:    // wait child
+640:        int tpid = wait(NULL);
+643:                perror("wait");
+649:    // printf("wait child %d success\n", pid);
+717:                pid_t tpid = wait(NULL);
+719:                    // perror("wait");
+786:                pid_t tpid = wait(NULL);
+788:                    // perror("wait");
+797:        pid_t tpid = wait(NULL);
+799:            // perror("wait");
+
+grep -n void p2.c
+18: *void reset(): reset everything to null or 0, so the program will reset everything
+21: *void showprompt(): print the prompt
+118:void reset();
+120:void showprompt();
+126:void run_test();
+154:void myhandler(int signum)
+167:   (void)signal(SIGTERM,myhandler);
+206:void reset()
+243:void showprompt()
+405:void run_test()
+
+Are you ensuring that background children don't compete for keyboard input?
+grep -n /dev/null p2.c
+592:                fpath = "/dev/null";
+
+Are you ensuring that children inherit only empty buffers?
+egrep -n 'fork|fflush' p2.c
+14: *of the command is made inside the child of a fork. Furthermore, the program use
+34: *'two' fork() for two pid which mean parent will create two children. Using wait
+248:    fflush(stdout);
+580:    if ((pid = fork()) < 0) {
+581:        perror("fork");
+692:        // fork
+693:        pid_t pid = fork();
+695:            perror("fork");
+732:    pid_t pid = fork();
+734:        perror("fork error");
+747:        // fork
+748:        pid_t pid2 = fork();
+750:            perror("fork error");
+
+Do all children exit() upon failure?
+egrep -n 'execvp|exit|dup2|open|CHK|perror' p2.c
+30: *int run_single_cmd(): similar idea for dup2.c. First, we have to open the file to
+31: *see that it is exist or not. Also, we have to use dup2 to a file which open for
+32: *the output. We don't want to have both file descriptors open, so close()
+36: *child processes exits or a signal is recevied. For vertical pipe, we have to do
+67://#include "CHK.h"
+164:        perror("setpgid");
+202:    exit(0);
+472:        perror("chdir");
+498:        dirp = opendir(cmds[0].cmd_args[i]);
+516:                perror("ls-F error");
+530:                    perror("lstat");
+567:    if (execvp(cmds[0].cmd_args[1], &(cmds[0].cmd_args[1])) < 0) {
+568:        perror("execvp failure");
+569:        _exit(-1);
+581:        perror("fork");
+594:            if ((in_fd = open(fpath, O_RDONLY)) < 0) {
+595:                perror("open");
+596:                _exit(-1);
+599:            if (dup2(in_fd, STDIN_FILENO) < 0) {
+601:                perror("dup2");
+602:                _exit(-1);
+609:            if ((out_fd = open(output_file, O_WRONLY|O_CREAT|O_TRUNC, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH)) < 0) {
+610:                // perror("open");
+611:                fprintf(stderr, "open %s failed\n", output_file);
+612:                _exit(-1);
+615:            if (dup2(out_fd, STDOUT_FILENO) < 0) {
+616:                perror("dup2");
+617:                _exit(-1);
+624:        if (execvp(cmds[0].cmd_args[0], cmds[0].cmd_args) < 0) {
+625:            perror("execvp failure");
+626:            _exit(-1);
+643:                perror("wait");
+659:        if (dup2(fds[1], STDOUT_FILENO) < 0) {
+660:            perror("dup2 error");
+668:            if ((in_fd = open(input_file, O_RDONLY)) < 0) {
+669:                fprintf(stderr, "open %s failed\n", input_file);
+673:            if (dup2(in_fd, STDIN_FILENO) < 0) {
+675:                perror("dup2 error");
+680:        if (execvp(cmds[i].cmd_args[0], cmds[i].cmd_args) < 0) {
+681:            perror("execvp error");
+688:            perror("pipe error");
+695:            perror("fork");
+703:            _exit(1);
+706:        dup2(fds[1], STDOUT_FILENO);
+707:        dup2(fds2[0], STDIN_FILENO);
+713:        if (execvp(cmds[i].cmd_args[0], cmds[i].cmd_args) < 0) {
+719:                    // perror("wait");
+734:        perror("fork error");
+743:            perror("pipe error");
+744:            _exit(1);
+750:            perror("fork error");
+751:            _exit(1);
+757:            _exit(1);
+762:            int out_fd = open(output_file, O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+764:                fprintf(stderr, "open %s failed\n", output_file);
+765:                _exit(1);
+768:            if (dup2(out_fd, STDOUT_FILENO) < 0) {
+770:                perror("dup2");
+771:                _exit(1);
+777:        dup2(fds[0], STDIN_FILENO);
+782:        if (execvp(cmds[index].cmd_args[0], cmds[index].cmd_args) < 0) {
+784:            perror("execvp error");
+788:                    // perror("wait");
+792:            _exit(1);
+799:            // perror("wait");
+
+What (if anything) are you passing to parse?
+grep -n parse( p2.c
+22: *int parse(): this part is going to find the metacharacter. Therefore, I use the
+122:int parse();
+181:        parse();
+252:int parse()
+
+Calls to system() are NOT being used, right?:
+grep -n system p2.c
+10: *This program is a command line interperter for Unix system, and it acts like shell.
+35: *system call in c. A call to wait() blocks the calling process until one of its
+
+Test 4... is p2.c documented?
+(Your p2.c documentation does NOT have to repeat all the specs for p2,
+but it should list your name, instructor name [NOTE: 'Carroll' contains
+two 'R's and two 'L's], class [that is, 'CS480'], due date, etc.)
+A brief synopsis and guidance at decision points / tricky issues will suffice.
+You may LOSE a point here if it keywords are missing; your total is now 0/0
+(Many more points depend on your documentation, but a human will have to
+assign the remaining documentation points.)
+
+Test 5... how is the syntax?
+make splint
+splint -warnposix +trytorecover -weak getword.c p2.c
+Splint 3.1.2 --- 11 Oct 2015
+
+p2.c: (in function run_ls_F)
+p2.c:500:28: Parse Error. Attempting to continue.
+p2.c:500:28: Cannot recover from parse error.
+*** Cannot continue.
+make: *** [splint] Error 1
+
+splint encountered an unrecoverable error     ERROR    ERROR    ERROR    ERROR
+YOU LOSE A POINT HERE; your total is now -1/0
+
+NOTE: not everything that 'splint' comments about is necessarily a bad thing;
+for example, splint may complain if you don't save the value that printf()
+returns (even if this may be a perfectly reasonable thing to ignore).
+
+Test 6... Does the gradernotes file exist?
+Yes.
+Your gradernotes file contains:
+
+1:I lose one point from 'make splint', and I think I put all variables on the top of each block.
+2:I tried to move all variables to top of each block, but my program will display
+3:the wrong output for me.
+4:
+5:I believe everthing work except 'amke splint'.
+6:I wrote this code by myself.
+7:
+8:I copy the code 'strdup' function from the internet since 'make splint' shows
+9:it is an undeclared identifier.
+10:link:https://stackoverflow.com/questions/40766055/error-strdup-was-not-declared-in-this-scope
+11:
+12:USEFUL help from edoras like 'man errno'. Helping me how to use errno
+13:
+14:cite code:
+15:fork1.c,exec1.c, fork2.c pipe.c,dup.c, dup2.c, sig.c, sighandler,c,dir.c, stat.c.
+
+You may LOSE a point here if it doesn't exist; your total is now -1/0
+(Note that TWO required statements belong in this file; also list your design
+decisions here [see the 'checklist' below for samples of what to include .]
+A human grader will check this later, and perhaps adjust your score.)
+
+Test 7... are the makefile and getword.h soft links in place?
+ls -l ~cssc0094/Two/makefile ~cssc0094/Two/getword.h
+lrwxrwxrwx 1 cssc0094 carroll 36 Sep 21 19:28 /home/cs/carroll/cssc0094/Two/getword.h -> /home/cs/faculty/cs480/One/getword.h
+lrwxrwxrwx 1 cssc0094 carroll 35 Sep 21 19:28 /home/cs/carroll/cssc0094/Two/makefile -> /home/cs/faculty/cs480/Two/makefile
+makefile is correctly linked.
+getword.h is correctly linked.
+If you don't have the right setup, you could LOSE a point here;
+                                       Your total is now -1/0
+
+Test 8... are the proper .h files included in your source code?
+One more point was possible here; your total is now 0/1
+(If you are failing this test, just #include all the .h files for the system
+calls recommended for program2, even if you are not yet using all those calls.)
+There are (at least) 9 header files that you will need.
+And of course, if you're using non-recommended calls, make sure you have the
+proper .h files for those, too.
+
+Test 9... does your program compile?
+make clean; make
+rm -f *.o p2
+gcc -g   -c -o getword.o getword.c
+gcc -g   -c -o p2.o p2.c
+gcc -o p2 getword.o p2.o
+[1] 32047
+
+Test 10... does your program use ';' as a command separator?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input1 :
+
+Your output was:
+:480: Null
+:480: voiD
+:480: p2 terminated.
+
+The correct output is:
+Null
+voiD
+:480: :480: :480: p2 terminated.
+
+Parent/child output could get interleaved, but that's still correct behavior.
+
+Three more points were possible here; your total is now 3/4
+
+Some notes about the [odd-looking] correct output:
+Your shell was run using: ~cssc0094/Two/p2 < ~cs480/Data4/input1
+Due to the above redirection, we do not see any input commands, we only
+see what your process outputs.  If you are following the specs, p2 should print
+the prompt three times, followed by 'p2 terminated.', so
+':480: :480: :480: p2 terminated.' is correct.
+The child finishes first and therefore flushes his output buffer first, so the
+child output will (usually) appear before the shell prompts in these tests.
+...but this is NOT the order you should see when testing your p2 interactively.
+NOTE: If your ':480: ' prompt prints the proper NUMBER of times, but is intermixed
+with the other output, the autograder should still give you full credit; if not,
+the most common reason is inexact punctuation (3 colons AND a period).
+
+Test 11... does your program handle escaped metacharacters?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input2 :
+
+Your output was:
+:480: rat ear|
+:480: cac fac|
+:480: p2 terminated.
+
+The correct output is (note the extra spaces):
+:480: rat ear|
+:480: cac   fac|
+:480: p2 terminated.
+
+                    Child process produced reasonable output -- CONGRATULATIONS
+
+Two more points were possible here; your total is now 5/6
+
+Test 12... does 'cd' with no arguments work?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input3 :
+(I randomly set the HOME variable, so don't expect ~cssc0094 in the output.)
+
+Your output was:
+:480: :480: /usr/local/bin
+:480: p2 terminated.
+
+The correct output is:
+/usr/local/bin
+:480: :480: :480: p2 terminated.
+(You can get full credit, even with parent and child output interleaved.)
+
+One more point was possible here; your total is now 6/7
+
+Test 13... does backgrounding work?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input5 :
+
+Your output was:
+:480: Wed Nov 24 11:10:23 PST 2021
+:480: /home/cs/faculty/cs480/jabbersleepy [32092]
+:480: :480: child =32092= begins sleep
+Wed Nov 24 11:10:23 PST 2021
+:480: child =32092= ends sleep
+:480: p2 terminated.
+
+Did you print the process name, a space, and '[' ? (i.e., '.../jabbersleepy [')
+             /home/cs/faculty/cs480/jabbersleepy was printed -- CONGRATULATIONS
+
+Did your shell print the correct child process ID, within '[' and ']' ?
+                    Yes, the child PID inside [] was printed -- CONGRATULATIONS
+Did the two 'date' commands get executed within the same second?
+    Good, your shell did not wait for the background process -- CONGRATULATIONS
+
+Three more points were possible here; your total is now 9/10
+
+Test 14... do backgrounded zombies get reaped quickly?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input88 :
+
+Your output was:
+:480: sleep [32134]
+:480: :480: sleep [32135]
+:480: :480: sleep [32136]
+:480: :480: :480: foreground jobs should clear out all zombies...if you use
+wait() correctly.
+:480: USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+cssc0094 31941  0.2  0.0  15688  1524 pts/14   S+   11:10   0:00 sg
+cssc0094 31963  0.6  0.0  15684  1552 pts/14   S+   11:10   0:00 csh
+/tmp/carroll15162/studscript
+cssc0094 32047  0.0  0.0  15684   640 pts/14   S    11:10   0:00 csh
+/tmp/carroll15162/studscript
+cssc0094 32048  0.0  0.0   4364   356 pts/14   S    11:10   0:00 sleep 19
+cssc0094 32132  0.0  0.0   4376   360 pts/14   S+   11:10   0:00 head -100
+cssc0094 32133  0.0  0.0   4440   684 pts/14   S    11:10   0:00
+/home/cs/carroll/cssc0094/Two/p2
+cssc0094 32165  0.0  0.0  51732  1744 pts/14   R    11:10   0:00 /bin/ps -xu
+:480: p2 terminated.
+
+           No zombie '<defunct>' processes were found by ps  -- CONGRATULATIONS
+
+You LOSE a point here if zombies remain (or ps fails); your total is now 9/10
+
+Test 15... does the shell wait for foreground children?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input6 :
+
+Your output was:
+:480: /bin/date [32173]
+:480: :480: Wed Nov 24 11:10:28 PST 2021
+CHILI =32176= BAGINS SLAB
+CHILI =32176= ANIS SLAB
+:480: Wed Nov 24 11:10:30 PST 2021
+:480: p2 terminated.
+
+Did two seconds pass between the two 'date' commands?
+          Good, your shell waited for the foreground process -- CONGRATULATIONS
+         Good, your shell handled the pipeline appropriately -- CONGRATULATIONS
+
+Two more points were possible here; your total is now 11/12
+
+Test 16... does your program redirect standard input?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input7 :
+
+The contents of stdout/stderr was:
+:480: :480: :480: p2 terminated.
+
+The contents redirected to your.outpute:
+allsaw 'oscillation
+                    Child process redirected input from file -- CONGRATULATIONS
+
+The contents redirected to your.outputf:
+ALLSAW 'OSCILLATION
+                    Child process redirected input from file -- CONGRATULATIONS
+
+Two more points were possible here; your total is now 13/14
+
+Test 17... do pipelines and input/output redirection all work?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input11 :
+
+The contents of stdout/stderr was:
+:480: echo [32212]
+:480: first command
+:480: p2 terminated.
+
+The results of the redirected pipeline (in your.outputc) was:
+ECHO NULL;ECHO          VOID
+
+The proper file contents should be:
+ECHO NULL;ECHO          VOID
+
+              Pipeline redirected input/output from/to files -- CONGRATULATIONS
+
+Three more points were possible here; your total is now 16/17
+
+Test 18... does your program guard against buffer overruns?
+(Note that every one of the strings you put in your argv[] array could
+potentially contain 254 characters, so p2 needs a LARGE character buffer...
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input8 :
+
+What was sent to stdout was (with 'extra' newlines inserted at column 80,
+so that the results don't display in a misleading way):
+:480: a<b>c once56789a123456789b123456789c123456789d123456789e123456789f12345678
+9g123456789h123456789i123456789j123456789k123456789l123456789m123456789n12345678
+9o123456789p123456789q123456789r123456789s123456789t123456789u123456789v12345678
+9w123456789x123456789y1234 56789z
+:480: >> Twice6789a123456789b123456789c123456789d123456789e123456789f123456789g1
+23456789h123456789i123456789j123456789k123456789l123456789m123456789n123456789o1
+23456789p123456789q123456789r123456789s123456789T123456789u123456789v123456789w1
+23456789x123456789Y1234 56789z
+:480: p2 terminated.
+
+The first two lines of correct output (with extraneous newlines in column 80,
+to wrap the lines and make them fit on the screen) are:
+a<b>c once56789a123456789b123456789c123456789d123456789e123456789f123456789g1234
+56789h123456789i123456789j123456789k123456789l123456789m123456789n123456789o1234
+56789p123456789q123456789r123456789s123456789t123456789u123456789v123456789w1234
+56789x123456789y1234 56789z
+>> Twice6789a123456789b123456789c123456789d123456789e123456789f123456789g1234567
+89h123456789i123456789j123456789k123456789l123456789m123456789n123456789o1234567
+89p123456789q123456789r123456789s123456789T123456789u123456789v123456789w1234567
+89x123456789Y1234 56789z
+  Good, your shell continued to process these valid commands -- CONGRATULATIONS
+
+Good, your shell processed the first quoted string correctly -- CONGRATULATIONS
+
+  Your shell truncated the long argument at the proper place -- CONGRATULATIONS
+
+Three more points were possible here; your total is now 19/20
+
+Test 19... does your program avoid overwriting existing files?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input99 :
+
+Your stdout contents were:
+:480: :480: :480: LINUX EDORAS.SDSU.EDU 3.10.0-1160.45.1.EL7.X86_64 #1 SMP WED
+OCT 13 17:20:51 UTC 2021 X86_64 X86_64 X86_64 GNU/LINUX
+:480: :480: p2 terminated.
+NOTE: examine your error messages below carefully; if you see repeated
+messages that you did not expect, this is likely because the parent still had
+the error message in its buffer, the forked child inherited this data, and then
+both the parent and the child printed it.  You may have trouble reproducing
+this effect in your own experiments, but fflush() is what you need to fix it.
+**********************************************************************
+*             STDERR MESSAGES FROM input99                           *
+**********************************************************************
+Your stderr contents were:
+output file your.outputO exists
+   If you complained about not overwriting existing files, then CONGRATULATIONS
+may be appropriate.
+Checking for the specified file (your.outputO)...
+ls -l your.outputO
+-rw------- 1 cssc0094 carroll 23 Nov 24 11:10 your.outputO
+The data in the specified file (your.outputO) was:
+this should be ALLOWED
+
+The output of the final echo SHOULD be in this file (not the earlier echo)
+     Child redirected output, with overwrite when appropriate-- CONGRATULATIONS
+Before overwriting, tr should have capitalized the /bin/uname output:
+Child refused redirection when appropriate.  Cool.
+
+Three more points were possible here; your total is now 22/23
+
+Test 20... do you warn the user about overwriting directories?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input77 :
+
+stdout received:
+:480: redirection has some sanity checks for directories, yes?
+:480: :480: p2 terminated.
+
+Your stderr contents were:
+open ../Zero failed
+           Good, ../Zero was mentioned in your error message -- CONGRATULATIONS
+
+One more point was possible here; your total is now 23/24
+
+
+Test 21... does your built-in ls-F command work?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input66 :
+
+Your stdout contents were:
+:480: :480: ./
+../
+lmhosts
+smb.conf
+smb.conf.example
+:480: :480: p2 terminated.
+**********************************************************************
+*             STDERR MESSAGES FROM input66                           *
+**********************************************************************
+Your stderr contents were:
+/A/ComplaintShouldGoToStderr doesnot exist
+    If you complained about the directory not being found, then CONGRATULATIONS
+may be appropriate.
+
+A diff of the correct output with your output (minus the prompts) shows:
+
+Your built-in ls-F listed the directory in the correct order -- CONGRATULATIONS
+
+Three more points were possible here; your total is now 26/27
+
+NOTE: You DON'T have to handle the case where ls-F is redirected / backgrounded.
+
+Test 22... do foreground/background input/output redirection all work?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input9 :
+
+The contents of stdout/stderr was:
+:480: tr [32295]
+:480: :480: :480: p2 terminated.
+
+The results of the foreground command (in your.outputf) was:
+ESCHEW 'OBFUSCATION
+The proper file contents should be:
+ESCHEW 'OBFUSCATION
+         Child process redirected input/output from/to files -- CONGRATULATIONS
+
+The results of the background command (in your.outputb) was:
+ESCHEW 'OBFUSCATION
+The proper file contents should be:
+ESCHEW 'OBFUSCATION
+         Child process redirected input/output from/to files -- CONGRATULATIONS
+
+Two more points were possible here; your total is now 28/29
+
+Test 23... does your built-in ls-F command handle all file types?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input00 :
+
+What was sent to stdout was:
+:480: ./
+../
+m*
+a/
+x
+b*
+h*
+y@
+z&
+:480: :480: p2 terminated.
+
+A diff of the correct stdout with your output (minus the prompts) shows:
+
+Good, p2 appended the appropriate characters to each filename-- CONGRATULATIONS
+
+**********************************************************************
+*             STDERR MESSAGES FROM input00                           *
+**********************************************************************
+What was sent to stderr was:
+/etc/cron.daily/ unreadable
+
+  Good, /etc/cron.daily/ was mentioned in your error message -- CONGRATULATIONS
+
+Four more points were possible here; your total is now 32/33
+
+Test 24... does your program handle badly-constructed commands?
+NOTE: This test starts in /etc/X11, so the 'cd ..' should leave you in /etc/ .
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input10 :
+
+What was sent to stdout was:
+:480: :480: :480: :480: :480: :480: Linux
+:480: SHOULD_not_EXEC
+:480: :480: This echo and the next cd SHOULD be executed by your shell and NOT
+cause errors
+:480: :480: :480: /etc
+:480: p2 terminated.
+
+    Good, your shell continued to process the valid commands -- CONGRATULATIONS
+
+**********************************************************************
+*             STDERR MESSAGES FROM input10                           *
+**********************************************************************
+What was sent to stderr was:
+cd: too many arguments
+bad syntax
+open /etc/redhat-release failed
+bad syntax
+
+If your stderr message complained about confusing options, then CONGRATULATIONS
+may be appropriate.
+
+Of course, a human will have to judge the quality of your error/warning messages
+
+Three more points were possible here; your total is now 35/36
+
+Test 25... does your program handle the exec built-in (and quoting)?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input4 :
+
+What was sent to stdout was:
+:480: :480: :480: DO make sure you've flushed stdout&stderr before the builtin
+exec runs
+:480: /usr/local/bin/goback
+
+          Good, your shell got the quote-within-quotes right -- CONGRATULATIONS
+    Good, your shell didn't execute the badly-quoted command -- CONGRATULATIONS
+
+**********************************************************************
+*             STDERR MESSAGES FROM input4                            *
+**********************************************************************
+What was sent to stderr was:
+bad syntax
+
+If your stderr message complained about mismatched quotes, then CONGRATULATIONS
+may be appropriate.
+
+Of course, a human will have to judge the quality of your error/warning messages
+
+Three more points were possible here; your total is now 38/39
+
+Test 26... a chance for EXTRA CREDIT: does exec work with pipelines?
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input33 :
+
+Your output was:
+:480: possible EXTRA CREDIT!
+:480: (No extra credit if it is not the p2 parent doing the last "tr -d" ... )
+:480: dog feet
+                                                ERROR, but NOT really an ERROR
+The fancy exec didn't work, but this doesn't hurt your score.
+
+Three more points were possible here; your total is now 38/39
+(The denominator (39) didn't change, because this was an EXTRA CREDIT test.)
+
+Test 27... even more EXTRA CREDIT: does ls-F work with pipelines?
+NOTE: ls-F does not read from stdin, so the only place it makes sense in a
+pipeline is at the beginning (the far left). Don't worry about other placements.
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input14 :
+
+What went to stdout/stderr was:
+:480: ./
+../
+m*
+a/
+x
+b*
+h*
+y@
+z&
+:480: p2 terminated.
+
+The correct (extra credit) contents in the output file should be:
+Z&
+Y@
+X
+M*
+H*
+B*
+A/
+./
+../
+Your contents were:
+cat: your.outputF: No such file or directory
+The fancy pipeline didn't work, but this doesn't hurt your score.
+
+Two more points were possible here; your total is now 38/39
+(The denominator (39) didn't change, because this was an EXTRA CREDIT test.)
+
+Test 28...  one more Easter Egg: ls-F in program4 was supposed to handle
+multiple arguments, but I haven't been testing for that.  So if you're actually
+doing that correctly, you can get yet another EXTRA CREDIT point here:
+I'll (silently) try ~cssc0094/Two/p2 < ~cs480/Data4/input17 :
+config
+                 Great.  /etc/w3m/config was reported by ls-F.  CONGRATULATIONS
+One more point was possible here; your total is now 39/39
+(The denominator (39) didn't change, because this was an EXTRA CREDIT test.)
+
+The assignment will be worth 44 points (after a human grades it).
+
+Test 29... no points, just a way of checking if vertical piping is implemented.
+Examine the output of the ps command below carefully.  If you are doing vertical
+piping correctly, EACH 'sleep' process will have a different parent (shown in
+the PPID column).  If so, relax -- you're doing things right.
+
+But if several children report the SAME parent, this is horizontal piping.
+The autograder is too dumb to check this effectively, so it may be reporting a
+MUCH higher score than is warranted.
+
+If you fail to do vertical piping, it [negatively] affects your grade.  A human
+(me) will have to sadly demolish your piping points when I grade the printouts.
+
+
+Here is the result of ~cssc0094/Two/p2 < ~cs480/Data4/input16 :
+
+:480: S UID        PID  PPID  C PRI  NI   RSS    SZ WCHAN  STIME TTY          TIME CMD
+S cssc0094 32376 31963  0  80   0   616  1110 do_wai 11:10 pts/14   00:00:00 /home/cs/carroll/cssc0094/Two/p2
+S cssc0094 32377 32376  0  80   0   356  1054 do_wai 11:10 pts/14   00:00:00 /home/cs/faculty/cs480/vertical
+S cssc0094 32378 32377  0  80   0   356  1091 hrtime 11:10 pts/14   00:00:00 sleep 2
+S cssc0094 32379 32378  0  80   0   356  1091 hrtime 11:10 pts/14   00:00:00 sleep 2
+S cssc0094 32380 32379  0  80   0   360  1091 hrtime 11:10 pts/14   00:00:00 sleep 2
+S cssc0094 32381 32380  0  80   0   356  1091 hrtime 11:10 pts/14   00:00:00 sleep 2
+S cssc0094 32382 32381  0  80   0   356  1091 hrtime 11:10 pts/14   00:00:00 sleep 2
+
+:480: p2 terminated.
+
+NOTE: ~cs480/vertical does "ps -lyfww", then filters out confusing lines
+(And I got rid of some prompts, so things line up better.)
+
+Your grade for this assignment will be determined by a (human) grader
+at the due date.
+The automation currently only tests 39 out of the total 44 points;
+a human will determine whether you have earned the remaining 5 points,
+and if you miss too much stuff on the checklist below, you'll LOSE some points.
+(On the automated part, you scored 39/39.)
+See the extensive checklist to get an idea of what I will be looking for.
+             ------
+Total Points |38+?|  for cssc0094 cssc0094 - Chonglin Zhang,home for Program 4
+             |----|
+             | 44 |
+             ------
+The file /home/cs/carroll/cssc0094/Two/GradeEarly exists;
+IF this had been the extra-credit deadline,
+your project WOULD have been collected and graded with extra credit.
+Program 4 gradesheet
+
+a PARTIAL checklist of things the grader may judge:
+
+Quality of documentation & header info          constants, etc. documented?
+                                        ___/    name, class, date?
+Program logic and correctness                   mnemonics, no 'magic constants'?
+                                        ___/
+Appropriate bad-syntax error messages           e.g., mismatched "'", warn if >!
+                                        ___/    was applied to a directory, etc.
+NO inappropriate duplicate output lines
+(neither stderr nor stdout)             ___/    Research fflush()
+Correct foreground child wait()ed for?
+                                        ___/    2 statements, and also:
+MULTIPLE required items in gradernotes?         E.g., what do you do if you see:
+                                        ___/    echo hi> | ?   Document your
+Documentation of individual choices             choices *in gradernotes*, so
+                                        ___/    that I can find it!
+Background processes dup2 on /dev/null?
+                                        ___/
+Background processes terminate correctly        Are background zombies reaped?
+                                        ___/
+Does ls-F handle ALL it's arguments?            You can get extra credit if you
+                                        ___/    happen to be doing this.
+Built-in ls-F, not /bin/ls
+                                        ___/
+Do you exit upon execvp failure?                Same for pipe, dup2, open, etc.?
+                                        ___/
+Does a child create grandchild in pipes?        IMPORTANT!!! You will LOSE *ALL*
+                                        ___/    the pipeline points if you did
+Is your character array long enough?            not use 'vertical' pipelining.
+                                        ___/
+"p2 terminated" printf comes AFTER killpg       (This is how I check if your
+                                        ___/    signal handler is working...)
+Unexpected behavior (if any) documented
+in gradernotes file                     ___/    SAY what isn't working!
+                                       ______
+                                      |      |
+                                      |______|
+                                      |  44  |
+                                      |______|
+

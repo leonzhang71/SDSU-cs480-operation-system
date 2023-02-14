@@ -1,0 +1,1 @@
+ls-F /home/cs/faculty/cs480/Data4/dir | sort -r | tr a-z A-Z > your.outputF
