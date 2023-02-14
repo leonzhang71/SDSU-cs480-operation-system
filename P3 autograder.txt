@@ -1,0 +1,543 @@
+This is a **preliminary** test of your upcoming Program 3.
+
+This message, which will appear to be mailed from your account, is intended to
+show you some (but not necessarily all) of the checks that will be made on your
+assignment when the due date actually arrives.  This is NOT the actual version
+that will be graded, but only an attempt to give you early warning of any
+potential problems.  Point totals in the final graded version may differ.
+
+[Standard Disclaimer:]
+These practice tests are intended to show bugs, but also to reveal places
+where you may not be following all the automatic grader's nitpicking
+requirements.  If you receive failure warnings on the preliminary tests
+and then also have difficulty during the graded event, you have very little
+recourse.  To take full advantage of the feedback provided in this course,
+you must do the assignments in a timely fashion.
+jc
+
+Login     Name             Tty      Idle  Login Time   Office     Office Phone   Host
+cssc0094  Chonglin Zhang   pts/48      *  Nov  7 17:32 home                      (10.130.143.187)
+
+Checking Program 3:
+Remember, the GradeEarly file will be used to decide if you are FINISHED.
+If the GradeEarly file is present at the extra-credit deadline,
+your program will be considered 'submitted', with NO further chance for
+modifications.  Checking if the GradeEarly file exists:
+ls -l ~cssc0094/Three/GradeEarly
+-rw------- 1 cssc0094 carroll 0 Nov  3 16:12 /home/cs/carroll/cssc0094/Three/GradeEarly
+If this were the extra credit deadline (Friday night, 11/1/19),
+the autograder WOULD collect your program.
+Your gradernotes file contains:
+
+1://Name: Chonglin ZHang
+2://RedID: 822942790
+3://Class account: cssc0094
+4://Course: CS480 Operating Systems
+5://Instructor: John Carroll
+6:
+7:I wrote the p3helper.c code myself.
+8:I believe everything works well for all conditions.
+9:
+10:how to compile:
+11:make
+12:p3 6 777 3
+13:p3 5 777 4
+14:p3 4 777 3
+15:Algorithm:
+16:Basically a single lock algorithm is used, every process will enter the critical region, check the current number of item has been placed, then calculate the geometry of the item that it will place.
+17:If it is in line end, it print a 'N' then newline, if it is the last item, it print an 'F' then clean up.(remove common file and semaphore). After all these things done, process update the common file then
+18:leave the critical region, let other process to run
+19:Before starting, every process need to do some calculation, to get 'comman knowledge', (geometry), and initialize the mutex. The first process that successfully create the mutex is also responsible
+20:to create the and initialize the common file, which is used to store current number of items has been placed. The mutex is initialize to value 0 not 1, because other process need to wait the common file to be
+21:initialized. The first process will unlock the mutex (by sem_post) after all initialization done, then all things could actually start.
+22:Every process will first try to create the semaphore, if it has been created by other process, then the process will try to open it.
+23:Only the process successfully created the semaphore will try to create the common file. Only if the process has opened the sempahore and common file it will continue to print.
+
+
+NOTE: Make sure your gradernotes documentation EXPLAINS your solution strategy.
+If you use a common file to pass values between processes, you should explain
+why your code makes it impossible for a robot to use printeger() until after
+the common file has been initialized, etc.
+
+A significant part of your grade depends on how quickly your writeup
+leads me to an understanding of how your code works.
+Be sure to discuss your file/semaphore cleanup strategy, too.
+
+Make sure gradernotes also contains the other two REQUIRED statements, as well.
+
+total 24
+drwx------ 5 cssc0094   52 Aug 24 15:04 Maildir/
+drwx------ 2 cssc0094  154 Sep 27 22:40 One/
+-rw------- 1 cssc0094 1733 Aug 22 23:45 README
+drwx------ 2 cssc0094 4096 Nov  7 17:43 Three/
+drwx------ 2 cssc0094 4096 Oct  7 00:22 Two/
+drwx------ 2 cssc0094 4096 Sep 25 20:27 Zero/
+lrwxrwxrwx 1 cssc0094   31 Aug 27 23:55 calendar -> /home/cs/faculty/cs480/calendar
+drwx------ 2 cssc0094   61 Aug 26 10:35 data/
+drwx------ 2 cssc0094  129 Sep  6 00:15 data1/
+drwx------ 2 cssc0094   64 Sep  6 00:34 testOne/
+drwx------ 2 cssc0094 4096 Oct  5 12:42 testTwo/
+-rw------- 1 cssc0094   29 Sep 29 16:52 your.outputc
+Test 0... checking for the proper directory:
+total 132
+lrwxrwxrwx 1 cssc0094    34 Nov  3 14:46 CHK.h -> /home/cs/faculty/cs480/Three/CHK.h
+-rw------- 1 cssc0094     0 Nov  3 16:12 GradeEarly
+-rw------- 1 cssc0094  1595 Nov  7 17:42 gradernotes
+lrwxrwxrwx 1 cssc0094    37 Nov  3 14:46 makefile -> /home/cs/faculty/cs480/Three/makefile
+-rwx------ 1 cssc0094 19864 Nov  7 17:39 p3*
+lrwxrwxrwx 1 cssc0094    33 Nov  3 14:46 p3.h -> /home/cs/faculty/cs480/Three/p3.h
+-rw------- 1 cssc0094  7345 Nov  7 17:36 p3helper.c
+-rw------- 1 cssc0094 25968 Nov  7 17:39 p3helper.o
+lrwxrwxrwx 1 cssc0094    37 Nov  3 14:46 p3main.c -> /home/cs/faculty/cs480/Three/p3main.c
+-rw------- 1 cssc0094 17168 Nov  7 17:39 p3main.o
+-rwx------ 1 cssc0094 27136 Nov  7 17:39 p3robot*
+lrwxrwxrwx 1 cssc0094    38 Nov  3 14:46 p3robot.c -> /home/cs/faculty/cs480/Three/p3robot.c
+-rw------- 1 cssc0094 13688 Nov  7 17:39 p3robot.o
+-rw-r--r-- 1 cssc0094  5715 Oct 18  2019 semex.c
+Test 1... testing will proceed only if you have MODIFIED the proper file:
+ls -lo ~/Three/; diff ~cssc0094/Three/p3helper.c ~cs480/Three/p3helper.c
+total 132
+lrwxrwxrwx 1 cssc0094    34 Nov  3 14:46 CHK.h -> /home/cs/faculty/cs480/Three/CHK.h
+-rw------- 1 cssc0094     0 Nov  3 16:12 GradeEarly
+-rw------- 1 cssc0094  1595 Nov  7 17:42 gradernotes
+lrwxrwxrwx 1 cssc0094    37 Nov  3 14:46 makefile -> /home/cs/faculty/cs480/Three/makefile
+-rwx------ 1 cssc0094 19864 Nov  7 17:39 p3
+lrwxrwxrwx 1 cssc0094    33 Nov  3 14:46 p3.h -> /home/cs/faculty/cs480/Three/p3.h
+-rw------- 1 cssc0094  7345 Nov  7 17:36 p3helper.c
+-rw------- 1 cssc0094 25968 Nov  7 17:39 p3helper.o
+lrwxrwxrwx 1 cssc0094    37 Nov  3 14:46 p3main.c -> /home/cs/faculty/cs480/Three/p3main.c
+-rw------- 1 cssc0094 17168 Nov  7 17:39 p3main.o
+-rwx------ 1 cssc0094 27136 Nov  7 17:39 p3robot
+lrwxrwxrwx 1 cssc0094    38 Nov  3 14:46 p3robot.c -> /home/cs/faculty/cs480/Three/p3robot.c
+-rw------- 1 cssc0094 13688 Nov  7 17:39 p3robot.o
+-rw-r--r-- 1 cssc0094  5715 Oct 18  2019 semex.c
+1:/* p3helper.c
+2:   Program 3 CS480 SDSU Fall 2021
+3:
+4:   This is the ONLY file you are allowed to change. (In fact, the other
+5:   files should be symbolic links to
+6:     ~cs480/Three/p3main.c
+7:     ~cs480/Three/p3robot.c
+8:     ~cs480/Three/p3.h
+9:     ~cs480/Three/makefile
+10:     ~cs480/Three/CHK.h    )
+11:   */
+12:
+13://Name: Chonglin ZHang
+14:////RedID: 822942790
+15:////Class account: cssc0094
+16:////Course: CS480 Operating Systems
+17:////Instructor: John Carroll
+18://
+19://how to compile:
+20://make
+21://p3 6 777 3
+22://p3 5 777 4
+23://p3 4 777 3
+24://Algorithm:
+25://Basically a single lock algorithm is used, every process will enter the critical region, check the current number of item has been placed, then calculate the geometry of the item that it will place.
+26://If it is in line end, it print a 'N' then newline, if it is the last item, it print an 'F' then clean up.(remove common file and semaphore). After all these things done, process update the common file then
+27://leave the critical region, let other process to run
+28://Before starting, every process need to do some calculation, to get 'comman knowledge', (geometry), and initialize the mutex. The first process that successfully create the mutex is also responsible
+29://to create the and initialize the common file, which is used to store current number of items has been placed. The mutex is initialize to value 0 not 1, because other process need to wait the common file to be
+30://initialized. The first process will unlock the mutex (by sem_post) after all initialization done, then all things could actually start.
+31://Every process will first try to create the semaphore, if it has been created by other process, then the process will try to open it.
+32://Only the process successfully created the semaphore will try to create the common file. Only if the process has opened the sempahore and common file it will continue to print.
+33:#include "p3.h"
+34:
+35:/* You may put declarations/definitions here.
+36:   In particular, you will probably want access to information
+37:   about the job (for details see the assignment and the documentation
+38:   in p3robot.c):
+39:     */
+40:extern int nrRobots;
+41:extern int quota;
+42:extern int seed;
+43:
+44:// debug macros
+45:#define DEBUG 0
+46:#if(DEBUG)
+47:    #define D(x) x
+48:#else
+49:    #define D(x)
+50:#endif
+51:
+52:#define COMMONFILENAMESIZE 128
+53:#define INVALID_FD (-1)
+54:#define INVALID_LINENO (-1)
+55:
+56:sem_t *pmutx;
+57:int self_placed;
+58:int* pnewline;
+59:char semaphoreMutx[SEMNAMESIZE];
+60:char commonFilePath[COMMONFILENAMESIZE];
+61:int fd_count = INVALID_FD;
+62:
+63:// calculate the newline position
+64:// aka. the shape of triangle
+65:// return value is that the number of
+66:// items that should newline happens
+67:// example of 12 items
+68:// **
+69:// ****
+70:// ***
+71:// **
+72:// *
+73:// the first line, 2 items to newline
+74:// the second line, 6 items to newline (item number is accumulated)
+75:// the third line, 9 items, ...
+76:// so the return value is an array of {2,6,9,11,12,0}
+77:static int* do_math(int total);
+78:// calculate current line number
+79:// by how many item has been placed.
+80:static int calc_lineno(int placed);
+81:
+82:/* General documentation for the following functions is in p3.h
+83:   Here you supply the code, and internal documentation:
+84:   */
+85:void initStudentStuff(void) {
+86:    int count;
+87:    // calculate common knowledge
+88:    pnewline = do_math(nrRobots * quota);
+89:    // make semaphore name
+90:    sprintf(semaphoreMutx,"/%s%ldmutx",COURSEID,(long)getuid());
+91:    sprintf(commonFilePath, "/tmp/%s-p3-count-%ld", COURSEID, (long)getuid());
+92:    // try to create semaphore
+93:    pmutx = sem_open(semaphoreMutx, O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);
+94:    D(printf("Total is %d, my quota is %d\n", nrRobots * quota, quota);)
+95:    D(printf("Trying to open mutex\n");)
+96:    if (pmutx) {
+97:        count = 0;
+98:        // the first process to run is also responsible to
+99:        // create the count file and initialize it
+100:        CHK((fd_count = open(commonFilePath , O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)));
+101:        CHK(lseek(fd_count, 0, SEEK_SET));
+102:        assert(sizeof(count) == write(fd_count, &count, sizeof(count)));
+103:        // after the countfile has been created and initialized,
+104:        // then the other process is allowed to run
+105:        sem_post(pmutx);
+106:        D(printf("I am master\n");)
+107:    } else if (errno == EEXIST) {
+108:        // other process to run open the semaphore..
+109:        D(printf("I am slave\n");)
+110:        pCHK(SEM_FAILED == (pmutx = sem_open(semaphoreMutx, O_RDWR | O_EXCL, S_IRUSR | S_IWUSR)));
+111:    } else {
+112:        assert(0);
+113:    }
+114:}
+115:
+116:/* In this braindamaged version of placeWidget, the widget builders don't
+117:   coordinate at all, and merely print a random pattern. You should replace
+118:   this code with something that fully follows the p3 specification. */
+119:void placeWidget(int n) {
+120:    // line number, items placed
+121:    int lineno, placed;
+122:
+123:    // should process do cleanup job
+124:    int clean_self, clean_all;
+125:
+126:    clean_self = 0;
+127:    clean_all = 0;
+128:
+129:    // enter critical region
+130:    sem_wait(pmutx);
+131:    // read how many placed
+132:
+133:    if (fd_count < 0) {
+134:        CHK((fd_count = open(commonFilePath, O_RDWR, S_IRUSR | S_IWUSR)));
+135:    }
+136:    CHK(lseek(fd_count, 0, SEEK_SET));
+137:    CHK(read(fd_count,&placed, sizeof(placed)));
+138:    // calculate line number
+139:    lineno = calc_lineno(placed);
+140:    // place
+141:    printeger(n);
+142:    D(printf("Placing %dth item\n", placed);)
+143:
+144:    placed += 1;
+145:    self_placed += 1;
+146:
+147:    if (self_placed == quota) {
+148:        clean_self = 1;
+149:    }
+150:    if (placed == nrRobots * quota) {
+151:        // finish
+152:        D(printf("Should finish now\n");)
+153:        printf("F\n");
+154:        clean_all = 1;
+155:    } else if (placed == pnewline[lineno]) {
+156:        // newline
+157:        printf("N\n");
+158:    }
+159:    fflush(stdout);
+160:
+161:    if (!clean_all) {
+162:        // continue, update countfile
+163:        CHK(lseek(fd_count, 0, SEEK_SET));
+164:        assert(sizeof(placed) == write(fd_count,&placed, sizeof(placed)));
+165:    }
+166:    sem_post(pmutx);
+167:    if (clean_self) {
+168:        // clean up self
+169:        CHK(sem_close(pmutx));
+170:        CHK(close(fd_count));
+171:        free(pnewline);
+172:    }
+173:    if (clean_all) {
+174:        // clean all
+175:        CHK(sem_unlink(semaphoreMutx));
+176:        CHK(unlink(commonFilePath));
+177:    }
+178:}
+179:
+180:/* If you feel the need to create any additional functions, please
+181:   write them below here, with appropriate documentation:
+182:   */
+183:static int* do_math(int total) {
+184:    int* ret;
+185:    int i, left, nitem, lineno, nline;
+186:    left = total;
+187:    // firstly, calculate how many lines in total
+188:    for (nitem = 1, lineno = 0; nitem <= left; ++nitem, ++lineno) {
+189:        left -= nitem;
+190:    }
+191:    if (left) {
+192:        lineno += 1;
+193:    }
+194:
+195:    // got the number of total lines
+196:    nline = lineno;
+197:    // allocate
+198:    ret = malloc((lineno + 1) * sizeof(int));
+199:
+200:    // next, fill the result
+201:    left = total;
+202:    nitem = 1;
+203:    // it is easier to firstly
+204:    // calculate number of items in each line
+205:    // the last line has 1 item, so it is
+206:    // easier to calculate in reverse order
+207:    for (lineno = nline - 1; lineno >= 0; --lineno) {
+208:        ret[lineno] = nitem;
+209:        left -= nitem;
+210:        nitem += 1;
+211:        if (nitem > left) {
+212:            nitem = left;
+213:        }
+214:    }
+215:
+216:    for (i = 1; i < nline; ++i) {
+217:        ret[i] += ret[i - 1];
+218:    }
+219:    ret[i] = 0;
+220:    return ret;
+221:}
+222:
+223:static int calc_lineno(int placed) {
+224:    int i;
+225:    for (i = 0; pnewline[i] != 0; ++i) {
+226:        if (placed < pnewline[i]) {
+227:            return i;
+228:        }
+229:    }
+230:    return INVALID_LINENO;
+231:}
+
+----------------------------------------------------------------------sem_
+Looking for possible semaphore operations:
+grep -n sem_ p3helper.c
+30://initialized. The first process will unlock the mutex (by sem_post) after all initialization done, then all things could actually start.
+56:sem_t *pmutx;
+93:    pmutx = sem_open(semaphoreMutx, O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);
+105:        sem_post(pmutx);
+110:        pCHK(SEM_FAILED == (pmutx = sem_open(semaphoreMutx, O_RDWR | O_EXCL, S_IRUSR | S_IWUSR)));
+130:    sem_wait(pmutx);
+166:    sem_post(pmutx);
+169:        CHK(sem_close(pmutx));
+175:        CHK(sem_unlink(semaphoreMutx));
+
+----------------------------------------------------------------------open
+Looking for possible file openings:
+grep -n "[^_]open" p3helper.c
+31://Every process will first try to create the semaphore, if it has been created by other process, then the process will try to open it.
+32://Only the process successfully created the semaphore will try to create the common file. Only if the process has opened the sempahore and common file it will continue to print.
+95:    D(printf("Trying to open mutex\n");)
+100:        CHK((fd_count = open(commonFilePath , O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)));
+108:        // other process to run open the semaphore..
+134:        CHK((fd_count = open(commonFilePath, O_RDWR, S_IRUSR | S_IWUSR)));
+
+----------------------------------------------------------------------unlink
+Looking for possible file closings:
+grep -n "[^_]unlink" p3helper.c
+176:        CHK(unlink(commonFilePath));
+
+----------------------------------------------------------------------sprintf
+
+---------------------------------------------------------------------- -1
+Looking for problematic 'magic constants:
+grep -n .-1 p3helper.c
+53:#define INVALID_FD (-1)
+54:#define INVALID_LINENO (-1)
+
+----------------------------------------------------------------------SEM_
+Looking for appropriate mnemonics:
+grep -n SEM_FAILED p3helper.c
+110:        pCHK(SEM_FAILED == (pmutx = sem_open(semaphoreMutx, O_RDWR | O_EXCL, S_IRUSR | S_IWUSR)));
+
+----------------------------------------------------------------------sprintf
+Looking for unique semaphore names:
+grep -n sprintf p3helper.c
+90:    sprintf(semaphoreMutx,"/%s%ldmutx",COURSEID,(long)getuid());
+91:    sprintf(commonFilePath, "/tmp/%s-p3-count-%ld", COURSEID, (long)getuid());
+
+----------------------------------------------------------------------exit
+Looking for problematic exit()s:
+egrep -n 'exit|perror|CHK' p3helper.c
+10:     ~cs480/Three/CHK.h    )
+100:        CHK((fd_count = open(commonFilePath , O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR)));
+101:        CHK(lseek(fd_count, 0, SEEK_SET));
+110:        pCHK(SEM_FAILED == (pmutx = sem_open(semaphoreMutx, O_RDWR | O_EXCL, S_IRUSR | S_IWUSR)));
+134:        CHK((fd_count = open(commonFilePath, O_RDWR, S_IRUSR | S_IWUSR)));
+136:    CHK(lseek(fd_count, 0, SEEK_SET));
+137:    CHK(read(fd_count,&placed, sizeof(placed)));
+163:        CHK(lseek(fd_count, 0, SEEK_SET));
+169:        CHK(sem_close(pmutx));
+170:        CHK(close(fd_count));
+175:        CHK(sem_unlink(semaphoreMutx));
+176:        CHK(unlink(commonFilePath));
+
+----------------------------------------------------------------------sleep
+Looking for problematic sleep()s (There should be NONE in your p3helper.c):
+grep -n sleep p3helper.c
+
+Test 2... testing will proceed only if you have the proper SOFT links:
+FIVE project files should be soft links; yours are:
+lrwxrwxrwx 1 cssc0094 37 Nov  3 14:46 makefile -> /home/cs/faculty/cs480/Three/makefile
+lrwxrwxrwx 1 cssc0094 34 Nov  3 14:46 CHK.h -> /home/cs/faculty/cs480/Three/CHK.h
+lrwxrwxrwx 1 cssc0094 33 Nov  3 14:46 p3.h -> /home/cs/faculty/cs480/Three/p3.h
+lrwxrwxrwx 1 cssc0094 37 Nov  3 14:46 p3main.c -> /home/cs/faculty/cs480/Three/p3main.c
+lrwxrwxrwx 1 cssc0094 38 Nov  3 14:46 p3robot.c -> /home/cs/faculty/cs480/Three/p3robot.c
+
+Test 3... does your program compile?
+make clean; make
+rm -f p3 p3robot p3main.o p3helper.o p3robot.o
+gcc -g -O -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -c p3main.c
+gcc -g -O -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -o p3 p3main.o -pthread -lm
+gcc -g -O -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -c p3robot.c
+gcc -g -O -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -c p3helper.c
+gcc -g -O -Wall -Wpointer-arith -Wcast-qual -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -o p3robot p3robot.o p3helper.o -pthread -lm
+[1] 20190
+
+Test 4... six robots making 3 items each.
+Here is the result of ~cssc0094/Three/p3 6 666 3
+
+Your output was:
+Here is the output of /bin/ls -o /dev/shm/ | grep $USER
+If you see any files listed above that you own, you may need to rm them before
+testing p3.  If you just want this report without testing p3, try 'p3 0'
+ 20198 20199 20199N
+ 20199 20200 20202 20198 20197N
+ 20197 20197 20200 20200N
+ 20198 20201 20201N
+ 20202 20202N
+ 20201F
+The number of items in each row were: 3 5 4 3 2 1
+Good.
+The last characters in each row of your output are: N N N N N F
+Good.
+Does each PID get reported the correct number of times?
+Yes.
+                         Robots successfully coordinated -- CONGRATULATIONS
+
+Test 5... five robots making 4 items each.
+Here is the result of ~cssc0094/Three/p3 5 666 4
+
+Your output was:
+Here is the output of /bin/ls -o /dev/shm/ | grep $USER
+If you see any files listed above that you own, you may need to rm them before
+testing p3.  If you just want this report without testing p3, try 'p3 0'
+ 20256 20256 20256 20256 20258N
+ 20258 20258 20260 20260 20258N
+ 20259 20257 20260 20260N
+ 20259 20259 20257N
+ 20259 20257N
+ 20257F
+The number of items in each row were: 5 5 4 3 2 1
+Good.
+The last characters in each row of your output are: N N N N N F
+Good.
+Does each PID get reported the correct number of times?
+Yes.
+                         Robots successfully coordinated -- CONGRATULATIONS
+
+Test 6... four robots making 3 items each.
+Here is the result of ~cssc0094/Three/p3 4 666 3
+
+Your output was:
+Here is the output of /bin/ls -o /dev/shm/ | grep $USER
+If you see any files listed above that you own, you may need to rm them before
+testing p3.  If you just want this report without testing p3, try 'p3 0'
+ 20392 20392N
+ 20392 20394 20394 20394N
+ 20393 20395 20393N
+ 20395 20395N
+ 20393F
+The number of items in each row were: 2 4 3 2 1
+Good.
+The last characters in each row of your output are: N N N N F
+Good.
+Does each PID get reported the correct number of times?
+Yes.
+                         Robots successfully coordinated -- CONGRATULATIONS
+
+End of test runs.
+
+Check for an indication of 'your p3 seems to be deadlocked' earlier in this
+file.  That notification, and 'Killed' may have come before the successful
+run had finished printing.  I'm still tracking down this error.  If you saw
+THREE 'CONGRATULATIONS' messages, then the run was completely successful,
+despite what the autograder seems to imply.
+After this run, here's what semaphores (if any) were left in /tmp:
+/bin/ls -od /tmp/.* /tmp/* | grep cssc0094
+
+(Check carefully; there should be nothing listed above that your p3 is
+responsible for leaving behind.  If you have a deadlock, your code can't
+possibly avoid leaving stuff behind.)
+
+Program 3 gradesheet
+
+a PARTIAL checklist of things the grader may judge:
+                                                constants, etc. documented?
+Quality of documentation & explanations         use mnemonics (e.g., NOT -1)
+                                        ___/    name, class, professor, date?
+THREE mandatory statements in gradernotes       algorithm explained?
+                                        ___/
+Program logic and correctness                   Did you follow ALL the specs and
+                                        ___/    constraints outlined in p3.h?
+"F" in correct place?
+                                        ___/    If there are *logical* race
+No potential race conditions                    conditions, this is very bad,
+                                        ___/    even if your code appears to
+No extraneous files left behind                 give right answers.  Check this!
+                                        ___/
+NO sleep() calls in p3helper.c                  sleep() masks some problems,
+                                        ___/    but could cause others...
+Only 'approved' sem_* system calls?
+                                        ___/    You'll LOSE a fair amount of
+Proper mathematical 'shape' calculation?        credit if you hard-code numbers
+                                        ___/
+Initialization strategy explained?              How do you ensure that no robots
+                                        ___/    print before file/semaphores are
+Appropriate non-clashing node names             fully initialized?
+                                        ___/
+Cleanup strategy discussed?                     as well as algorithm explanation
+                                        ___/   
+Support file[s] created in a 'safe' place?      ...in a way that STILL works if
+                                        ___/    some other user runs your code?
+Unexpected behavior (if any) documented       
+in gradernotes file                     ___/    SAY what isn't working!
+                                       ______
+                                      |      |
+                                      |______|
+                                      |  20  |
+                                      |______|
