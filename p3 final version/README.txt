@@ -15,6 +15,6 @@ initialized. The first process will unlock the mutex (by sem_post) after all ini
 Every process will first try to create the semaphore, if it has been created by other process, then the process will try to open it. 
 Only the process successfully created the semaphore will try to create the common file. Only if the process has opened the sempahore and common file it will continue to print.
 
-
+If code not work, pls check the autograde file.
 
 
